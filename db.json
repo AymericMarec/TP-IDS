@@ -1,3 +1,1 @@
-{
-    
-}
+{"build_time": "2024-12-20T12:09:01.783626", "FileToCheck": [{"SHA512": "0997b85819732bbe915a6a5bce5b414a67ec6e8a27b0d104cbd802db6a67b09e0fa6259abf5f78f97b6e008c534f5d90d73ba8591771893261372a778eb2c835", "SHA256": "43c1b715eae7738439069d8059020cebe365cbbe0f77ae3c8bf73c1062cbf7ab", "MD5": "19a054377ff313fc5b5f5e95a4dc13aa", "date_last_modif": 1702908197.3536787, "date_creation": 1702908197.3596787, "owner": "root", "group": "root", "size": 758}, {"SHA512": "891ddd174b7a6d3a53b47196167b52098d05ef045da092220831825faa1f860f1f2cba160b3d00b40e347c9d116cc8d731955c9203e334aba1b93a2ac1230cb8", "SHA256": "8f222e1b2e4abe025febfd816ec47b098c65bbd13df1b258e15beea81941fe4f", "MD5": "823eb8877f8ccdff2adfc106c193700a", "date_last_modif": 1734692712.9102905, "date_creation": 1734692712.9102905, "owner": "aymeric", "group": "aymeric", "size": 99}]}
