@@ -2,7 +2,7 @@ import build
 import ports
 import json
 
-def check():
+def check(logger):
     infos = build.getInfoAllFile()
     listening_port = ports.get_udp_and_tcp()
     with open('db.json', 'r') as file:
