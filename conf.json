@@ -1,5 +1,5 @@
 {
-    "FileToCheck":["/etc/shadow","conf.json"],
+    "FileToCheck":["/etc/shadow","conf.json","truc.txt"],
     "FoldersToCheck":[],
     "CheckPorts": false
 }

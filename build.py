@@ -4,7 +4,8 @@ from base64 import encode
 import hashlib
 from pathlib import Path
 import json
-
+from glob import glob
+from ports import get_udp_and_tcp
 
 
 def build():
@@ -13,11 +14,18 @@ def build():
 
 
 def getInfoAllFile():
+    global FileFromDirectory
+    FileFromDirectory = []
     with open('conf.json', 'r') as file:
         data = json.load(file)
     files = data["FileToCheck"]
+    directories = data["FoldersToCheck"]
+    for directory in directories:
+        get_file_from_directory(directory)
+    files = files + FileFromDirectory
     all_infos = []
     for file in files:
+        print(file)
         info = getInfoFile(file)
         all_infos.append(info)
     return all_infos
@@ -27,10 +35,12 @@ def GenerateBuildFile(info_file):
     content = {
         "build_time":build_time,
         "FileToCheck":info_file,
-        "port_list":[]
+        "port_list": get_udp_and_tcp()
     }
     with open("db.json", "w") as outfile:
         json.dump(content, outfile)
+
+
 def getInfoFile(path):
     file = Path(path)
 
@@ -38,7 +48,7 @@ def getInfoFile(path):
     SHA256 = hash_file(path,"sha256")
     MD5 = hash_file(path,"md5")
     date_last_modif = os.path.getmtime(path)
-    date_creation = os.stat(file).st_ctime
+    date_access = os.stat(file).st_atime
     owner = file.owner()
     group = file.group()
     size = os.path.getsize(path)
@@ -47,7 +57,7 @@ def getInfoFile(path):
         "SHA256":SHA256,
         "MD5":MD5,
         "date_last_modif":date_last_modif,
-        "date_creation":date_creation,
+        "date_access":date_access,
         "owner":owner,
         "group":group,
         "size":size
@@ -64,4 +74,15 @@ def hash_file(file_path, algorithm='sha256'):
     
     return hash_func.hexdigest()
 
-build()
+def get_file_from_directory(path='.'):
+    global FileFromDirectory
+    for entry in os.listdir(path):
+        full_path = os.path.join(path, entry)
+        if os.path.isdir(full_path):
+            get_file_from_directory(full_path)
+        else:
+            FileFromDirectory.append(full_path)
+
+if __name__ == "__main__":
+    build()
+    
