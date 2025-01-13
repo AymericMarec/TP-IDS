@@ -4,8 +4,8 @@ from base64 import encode
 import hashlib
 from pathlib import Path
 import json
-
-
+from log import logger
+from ports import get_udp_and_tcp
 
 def build():
     infos = getInfoAllFile()
@@ -18,6 +18,9 @@ def getInfoAllFile():
     files = data["FileToCheck"]
     all_infos = []
     for file in files:
+        if not os.path.isfile(file):
+            logger.error(f"Le fichier {file} n'existe pas.")
+            continue
         info = getInfoFile(file)
         all_infos.append(info)
     return all_infos
@@ -27,10 +30,11 @@ def GenerateBuildFile(info_file):
     content = {
         "build_time":build_time,
         "FileToCheck":info_file,
-        "port_list":[]
+        "port_list": get_udp_and_tcp()
     }
     with open("db.json", "w") as outfile:
         json.dump(content, outfile)
+    logger.info(f"Fichier de build généré avec succès à {build_time}.")
 def getInfoFile(path):
     file = Path(path)
 
