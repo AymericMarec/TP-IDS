@@ -7,12 +7,15 @@
 ```powershell
 sudo dnf install python3
 sudo dnf install python3-pip
-pip install psutil
+pip3 install psutil
+pip3 install requests
 ```
 
 ### Le repo
 
 **Cloner ce repo dans /srv**
+
+/!\ dans webhook.py, mettre le l'url de votre propre webhook discord /!\
 
 ## Utilisation
 

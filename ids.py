@@ -5,7 +5,7 @@ from log import logger
 
 def IDS():
     logger.info("Lancement du script IDS.")
-    parser = argparse.ArgumentParser(description='pute')
+    parser = argparse.ArgumentParser()
 
     parser.add_argument('-b', '--build',action='store_true') 
     parser.add_argument('-c', '--check',action='store_true')
