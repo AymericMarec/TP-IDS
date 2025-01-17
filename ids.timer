@@ -1,0 +1,9 @@
+[Unit]
+Description=check the files every 15m
+Requires=ids.service
+
+[Timer]
+OnCalendar=*:0,15,30,45
+
+[Install]
+WantedBy=timer.target

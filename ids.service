@@ -5,6 +5,6 @@ Description=ids service
 Restart=on-failure
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory = /home/diane/TP-IDS
+WorkingDirectory = /srv/TP-IDS
 User=root
 ExecStart=/usr/bin/python ids.py --check
