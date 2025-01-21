@@ -1,5 +1,5 @@
 {
-    "FileToCheck":["truc.txt"],
+    "FileToCheck":[],
     "FoldersToCheck":[],
     "CheckPorts": true
 }
